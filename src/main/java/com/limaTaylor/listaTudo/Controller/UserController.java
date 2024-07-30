@@ -33,23 +33,7 @@ public class UserController {
 
     @GetMapping("/User/{userId}")
     public ResponseEntity<UserModel> getOneUser(@PathVariable(value = "userId") int userId) {
-        //Retornando a lista utilizando a Dto inserindo e buscando dados
-//        try {
-//            var userDto = new UserDto();
-//            var userModel = userRepository.getReferenceById(userId);
-//
-//            userDto.setUserId(userModel.getUserId());
-//            userDto.setFamilyId(userModel.getFamilyId());
-//            userDto.setGroupId(userModel.getGroupId());
-//            userDto.setUserName(userModel.getUserName());
-//            userDto.setFullName(userModel.getFullName());
-//
-//            return ResponseEntity.ok(userDto);
-//
-//        } catch (EntityNotFoundException ex) {
-//            return ResponseEntity.notFound().build();
-//        }
-
+        //Fazendo a busca de um usuário na base de dados e retornando se encontrou ou não
         final Optional<UserModel> optional = userRepository.findById(userId);
         if (optional.isPresent()) {
             return ResponseEntity.ok(optional.get());
@@ -60,6 +44,7 @@ public class UserController {
 
     @GetMapping("/User/all")
     public ResponseEntity<List<UserModel>> getAllUsers() {
+        //Retornando todas as entidades de usuários da base de dados
         return ResponseEntity.ok(userRepository.findAll());
     }
 }
