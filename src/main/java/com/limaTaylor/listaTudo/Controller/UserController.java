@@ -3,7 +3,6 @@ package com.limaTaylor.listaTudo.Controller;
 import com.limaTaylor.listaTudo.Dtos.UserDto;
 import com.limaTaylor.listaTudo.Models.UserModel;
 import com.limaTaylor.listaTudo.Repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,5 +45,18 @@ public class UserController {
     public ResponseEntity<List<UserModel>> getAllUsers() {
         //Retornando todas as entidades de usuários da base de dados
         return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    @DeleteMapping("User/{userId}")
+    public ResponseEntity<UserModel> deleteUser(@PathVariable(value = "userId") int userId) {
+        final Optional<UserModel> optional = userRepository.findById(userId);
+        if (optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            userRepository.delete(optional.get());
+            return ResponseEntity.ok(optional.get());
+        }
+
+
     }
 }
