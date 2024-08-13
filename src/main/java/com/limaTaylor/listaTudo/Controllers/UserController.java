@@ -1,4 +1,4 @@
-package com.limaTaylor.listaTudo.Controller;
+package com.limaTaylor.listaTudo.Controllers;
 
 import com.limaTaylor.listaTudo.Dtos.UserDto;
 import com.limaTaylor.listaTudo.Models.UserModel;
@@ -56,7 +56,5 @@ public class UserController {
             userRepository.delete(optional.get());
             return ResponseEntity.ok(optional.get());
         }
-
-
     }
 }

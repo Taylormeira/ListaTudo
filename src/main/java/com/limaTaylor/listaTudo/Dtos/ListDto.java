@@ -15,5 +15,4 @@ public class ListDto {
     private @Nullable int itemId;
     private @Nullable float itemQuantity;
     private @Nullable float itemValue;
-
 }
