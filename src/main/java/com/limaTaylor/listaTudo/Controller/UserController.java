@@ -35,7 +35,7 @@ public class UserController {
         //Fazendo a busca de um usuário na base de dados e retornando se encontrou ou não
         final Optional<UserModel> optional = userRepository.findById(userId);
         if (optional.isPresent()) {
-            return ResponseEntity.ok(optional.get());
+            return ResponseEntity.status(HttpStatus.CREATED).body(optional.get());
         } else {
             return ResponseEntity.notFound().build();
         }
