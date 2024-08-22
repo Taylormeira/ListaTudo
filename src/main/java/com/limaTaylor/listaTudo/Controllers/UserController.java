@@ -18,14 +18,9 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/User")
-    public ResponseEntity<UserModel> saveUser(@Valid @RequestBody UserDto userDto) {
-        //Copiando o corpo do json e criando a nova linha de dados na tabela
-        var userModel = new UserModel();
-        userModel.setUserId(userDto.getUserId());
-        userModel.setGroupId(userDto.getGroupId());
-        userModel.setFamilyId(userDto.getFamilyId());
-        userModel.setUserName(userDto.getUserName());
-        userModel.setFullName(userDto.getFullName());
+    public ResponseEntity<UserModel> createUser(@Valid @RequestBody UserDto userDto) {
+        //Recebendo a entidade com as informações de userDto.
+        var userModel = new UserModel(userDto);
         // Retornando via resposta Http o status da criação do usuário
         return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(userModel));
     }
