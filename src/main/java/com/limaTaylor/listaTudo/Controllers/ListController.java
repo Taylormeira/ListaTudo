@@ -17,15 +17,9 @@ public class ListController {
     @Autowired
     ListRepository listRepository;
     @PostMapping("/List")
-    public ResponseEntity<ListModel> saveList(@Valid @RequestBody ListDto listDto){
+    public ResponseEntity<ListModel> createList(@Valid @RequestBody ListDto listDto){
         //Criando uma objeto no banco.
-        var listModel = new ListModel();
-        listModel.setListId(listDto.getListId());
-        listModel.setGroupId(listDto.getGroupId());
-        listModel.setNameList(listDto.getNameList());
-        listModel.setItemId(listDto.getItemId());
-        listModel.setItemQuantity(listDto.getItemQuantity());
-        listModel.setItemValue(listDto.getItemValue());
+        var listModel = new ListModel(listDto);
         //Retornando HTTP de criação da lista
         return ResponseEntity.status(HttpStatus.CREATED).body(listRepository.save(listModel));
     }

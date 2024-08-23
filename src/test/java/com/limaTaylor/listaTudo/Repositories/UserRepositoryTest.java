@@ -19,7 +19,7 @@ public class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    @DisplayName("Create one user and should this user")
+    @DisplayName("Create one user and should this user is presente")
     void findUserByIdCase1() {
         int userId = 1;
         UserDto data = new UserDto(userId, 1, 1, "Taylor Lima", "Taylor Luiz Meira Lima");
@@ -30,7 +30,7 @@ public class UserRepositoryTest {
         assertThat(result.isPresent());
     }
     @Test
-    @DisplayName("should user Not present")
+    @DisplayName("should not user is present")
     void findUserByIdCase2() {
         int userId = 1;
 
